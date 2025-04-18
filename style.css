@@ -1,3 +1,15 @@
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #ff9800;
+    --success-color: #4caf50;
+    --text-color: #333;
+    --text-light: #666;
+    --background-color: #f5f5f5;
+    --card-background: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --spacing-unit: 8px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,56 +18,237 @@
 
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #f5f5f5;
-    padding: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: calc(var(--spacing-unit) * 2);
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
+    padding: calc(var(--spacing-unit) * 2);
 }
 
 h1 {
     text-align: center;
-    margin-bottom: 30px;
-    color: #333;
+    margin-bottom: calc(var(--spacing-unit) * 4);
+    color: var(--text-color);
+    font-size: 2.5rem;
+    font-weight: 700;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-color);
+    margin: calc(var(--spacing-unit) * 2) auto 0;
+    border-radius: 2px;
+}
+
+.search-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--spacing-unit) * 2);
+    justify-content: center;
+    align-items: center;
+    margin-bottom: calc(var(--spacing-unit) * 4);
+    padding: calc(var(--spacing-unit) * 2);
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+#searchInput {
+    flex: 1;
+    min-width: 250px;
+    padding: calc(var(--spacing-unit) * 1.5);
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+button {
+    padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: white;
+}
+
+#searchButton {
+    background-color: var(--primary-color);
+}
+
+#searchButton:hover {
+    background-color: #357abd;
+    transform: translateY(-2px);
+}
+
+#showFavoritesButton {
+    background-color: var(--secondary-color);
+}
+
+#showFavoritesButton:hover {
+    background-color: #f57c00;
+    transform: translateY(-2px);
+}
+
+#showAllButton {
+    background-color: var(--success-color);
+}
+
+#showAllButton:hover {
+    background-color: #388e3c;
+    transform: translateY(-2px);
 }
 
 .manga-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: calc(var(--spacing-unit) * 3);
+    padding: calc(var(--spacing-unit) * 2);
 }
 
 .manga-card {
-    background: white;
-    border-radius: 8px;
+    background: var(--card-background);
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
 }
 
 .manga-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px var(--shadow-color);
 }
 
 .manga-card img {
     width: 100%;
-    height: 300px;
+    height: 380px;
     object-fit: cover;
+    border-bottom: 1px solid #eee;
 }
 
 .manga-info {
-    padding: 15px;
+    padding: calc(var(--spacing-unit) * 2);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .manga-info h3 {
-    font-size: 16px;
-    margin-bottom: 5px;
-    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: calc(var(--spacing-unit) * 1.5);
+    color: var(--text-color);
+    line-height: 1.4;
 }
 
 .manga-info p {
-    font-size: 14px;
-    color: #666;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin-bottom: calc(var(--spacing-unit));
+}
+
+.favorite-btn {
+    width: 100%;
+    padding: calc(var(--spacing-unit) * 1.5);
+    margin-top: auto;
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.favorite-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.favorite-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.no-results {
+    text-align: center;
+    padding: calc(var(--spacing-unit) * 4);
+    font-size: 1.2rem;
+    color: var(--text-light);
+    grid-column: 1 / -1;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .container {
+        padding: var(--spacing-unit);
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: calc(var(--spacing-unit) * 3);
+    }
+
+    .search-container {
+        flex-direction: column;
+        padding: calc(var(--spacing-unit) * 1.5);
+    }
+
+    #searchInput {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .manga-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: calc(var(--spacing-unit) * 2);
+    }
+
+    .manga-card img {
+        height: 320px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: var(--spacing-unit);
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .manga-grid {
+        grid-template-columns: 1fr;
+        gap: calc(var(--spacing-unit) * 2);
+    }
+
+    .manga-card img {
+        height: 280px;
+    }
+
+    .manga-info h3 {
+        font-size: 1.1rem;
+    }
 } 

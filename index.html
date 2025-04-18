@@ -9,6 +9,16 @@
   <body>
     <div class="container">
       <h1>漫画一覧</h1>
+      <div class="search-container">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="漫画のタイトルを入力..."
+        />
+        <button id="searchButton">検索</button>
+        <button id="showFavoritesButton">★ お気に入り</button>
+        <button id="showAllButton">すべて表示</button>
+      </div>
       <div id="mangaList" class="manga-grid"></div>
     </div>
     <script src="script.js"></script>
